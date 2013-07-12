@@ -1,5 +1,6 @@
 /*
- * WARNING: Auto-generated file (8/5/2012 1:55:31 PM)
+ * WARNING: Auto-generated file (4/20/2013 1:36:57 PM)
+ * Run Rx's auto-homoiconizer tool to generate this file (in the HomoIcon directory).
  */
 
 #pragma warning disable 1591

@@ -14,7 +14,7 @@ namespace Microsoft.Reactive.Testing
         /// Default virtual time used for creation of observable sequences in <see cref="ReactiveTest"/>-based unit tests.
         /// </summary>
         public const long Created = 100;
-        
+
         /// <summary>
         /// Default virtual time used to subscribe to observable sequences in <see cref="ReactiveTest"/>-based unit tests.
         /// </summary>

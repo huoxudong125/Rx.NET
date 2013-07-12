@@ -184,7 +184,7 @@ namespace System.Reactive.Linq.Observαble
                 private readonly TSource _value;
                 private readonly IDisposable _self;
                 private int _indexInSource;
-				private int _indexInIntermediate = -1;
+                private int _indexInIntermediate = -1;
 
                 public ι(_ parent, TSource value, IDisposable self, int indexInSource)
                 {
@@ -192,7 +192,7 @@ namespace System.Reactive.Linq.Observαble
                     _value = value;
                     _self = self;
                     _indexInSource = indexInSource;
-					_indexInIntermediate = -1;
+                    _indexInIntermediate = -1;
                 }
 
                 public void OnNext(TCollection value)
@@ -954,7 +954,7 @@ namespace System.Reactive.Linq.Observαble
                                 {
                                     base._observer.OnError(new TaskCanceledException(task));
                                     base.Dispose();
-                               }
+                                }
                             }
                         }
                         break;

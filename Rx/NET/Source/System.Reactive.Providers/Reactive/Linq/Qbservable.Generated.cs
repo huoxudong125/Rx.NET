@@ -1,5 +1,5 @@
 /*
- * WARNING: Auto-generated file (1/10/2013 8:30:32 PM)
+ * WARNING: Auto-generated file (4/20/2013 1:36:55 PM)
  * Run Rx's auto-homoiconizer tool to generate this file (in the HomoIcon directory).
  */
 
@@ -7341,6 +7341,80 @@ namespace System.Reactive.Linq
         }
         
         /// <summary>
+        /// Groups the elements of an observable sequence with the specified initial capacity according to a specified key selector function.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <typeparam name="TKey">The type of the grouping key computed for each element in the source sequence.</typeparam>
+        /// <param name="source">An observable sequence whose elements to group.</param>
+        /// <param name="keySelector">A function to extract the key for each element.</param>
+        /// <param name="capacity">The initial number of elements that the underlying dictionary can contain.</param>
+        /// <returns>A sequence of observable groups, each of which corresponds to a unique key value, containing all elements that share that same key value.</returns>
+        /// <exception cref="T:System.ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="keySelector" /> is null.</exception>
+        /// <exception cref="T:System.ArgumentOutOfRangeException">
+        /// <paramref name="capacity" /> is less than 0.</exception>
+        public static IQbservable<IGroupedObservable<TKey, TSource>> GroupBy<TSource, TKey>(this IQbservable<TSource> source, Expression<Func<TSource, TKey>> keySelector, int capacity)
+        {
+            if (source == null)
+                throw new ArgumentNullException("source");
+            if (keySelector == null)
+                throw new ArgumentNullException("keySelector");
+            
+            return source.Provider.CreateQuery<IGroupedObservable<TKey, TSource>>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.GroupBy<TSource, TKey>(default(IQbservable<TSource>), default(Expression<Func<TSource, TKey>>), default(int))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource), typeof(TKey)),
+#endif
+                    source.Expression,
+                    keySelector,
+                    Expression.Constant(capacity, typeof(int))
+                )
+            );
+        }
+        
+        /// <summary>
+        /// Groups the elements of an observable sequence with the specified initial capacity according to a specified key selector function and comparer.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <typeparam name="TKey">The type of the grouping key computed for each element in the source sequence.</typeparam>
+        /// <param name="source">An observable sequence whose elements to group.</param>
+        /// <param name="keySelector">A function to extract the key for each element.</param>
+        /// <param name="capacity">The initial number of elements that the underlying dictionary can contain.</param>
+        /// <param name="comparer">An equality comparer to compare keys with.</param>
+        /// <returns>A sequence of observable groups, each of which corresponds to a unique key value, containing all elements that share that same key value.</returns>
+        /// <exception cref="T:System.ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="keySelector" /> or <paramref name="comparer" /> is null.</exception>
+        /// <exception cref="T:System.ArgumentOutOfRangeException">
+        /// <paramref name="capacity" /> is less than 0.</exception>
+        public static IQbservable<IGroupedObservable<TKey, TSource>> GroupBy<TSource, TKey>(this IQbservable<TSource> source, Expression<Func<TSource, TKey>> keySelector, int capacity, IEqualityComparer<TKey> comparer)
+        {
+            if (source == null)
+                throw new ArgumentNullException("source");
+            if (keySelector == null)
+                throw new ArgumentNullException("keySelector");
+            if (comparer == null)
+                throw new ArgumentNullException("comparer");
+            
+            return source.Provider.CreateQuery<IGroupedObservable<TKey, TSource>>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.GroupBy<TSource, TKey>(default(IQbservable<TSource>), default(Expression<Func<TSource, TKey>>), default(int), default(IEqualityComparer<TKey>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource), typeof(TKey)),
+#endif
+                    source.Expression,
+                    keySelector,
+                    Expression.Constant(capacity, typeof(int)),
+                    Expression.Constant(comparer, typeof(IEqualityComparer<TKey>))
+                )
+            );
+        }
+        
+        /// <summary>
         /// Groups the elements of an observable sequence according to a specified key selector function and comparer.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
@@ -7407,6 +7481,90 @@ namespace System.Reactive.Linq
                     source.Expression,
                     keySelector,
                     elementSelector
+                )
+            );
+        }
+        
+        /// <summary>
+        /// Groups the elements of an observable sequence with the specified initial capacity and selects the resulting elements by using a specified function.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <typeparam name="TKey">The type of the grouping key computed for each element in the source sequence.</typeparam>
+        /// <typeparam name="TElement">The type of the elements within the groups computed for each element in the source sequence.</typeparam>
+        /// <param name="source">An observable sequence whose elements to group.</param>
+        /// <param name="keySelector">A function to extract the key for each element.</param>
+        /// <param name="elementSelector">A function to map each source element to an element in an observable group.</param>
+        /// <param name="capacity">The initial number of elements that the underlying dictionary can contain.</param>
+        /// <returns>A sequence of observable groups, each of which corresponds to a unique key value, containing all elements that share that same key value.</returns>
+        /// <exception cref="T:System.ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="keySelector" /> or <paramref name="elementSelector" /> is null.</exception>
+        /// <exception cref="T:System.ArgumentOutOfRangeException">
+        /// <paramref name="capacity" /> is less than 0.</exception>
+        public static IQbservable<IGroupedObservable<TKey, TElement>> GroupBy<TSource, TKey, TElement>(this IQbservable<TSource> source, Expression<Func<TSource, TKey>> keySelector, Expression<Func<TSource, TElement>> elementSelector, int capacity)
+        {
+            if (source == null)
+                throw new ArgumentNullException("source");
+            if (keySelector == null)
+                throw new ArgumentNullException("keySelector");
+            if (elementSelector == null)
+                throw new ArgumentNullException("elementSelector");
+            
+            return source.Provider.CreateQuery<IGroupedObservable<TKey, TElement>>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.GroupBy<TSource, TKey, TElement>(default(IQbservable<TSource>), default(Expression<Func<TSource, TKey>>), default(Expression<Func<TSource, TElement>>), default(int))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource), typeof(TKey), typeof(TElement)),
+#endif
+                    source.Expression,
+                    keySelector,
+                    elementSelector,
+                    Expression.Constant(capacity, typeof(int))
+                )
+            );
+        }
+        
+        /// <summary>
+        /// Groups the elements of an observable sequence with the specified initial capacity according to a specified key selector function and comparer and selects the resulting elements by using a specified function.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <typeparam name="TKey">The type of the grouping key computed for each element in the source sequence.</typeparam>
+        /// <typeparam name="TElement">The type of the elements within the groups computed for each element in the source sequence.</typeparam>
+        /// <param name="source">An observable sequence whose elements to group.</param>
+        /// <param name="keySelector">A function to extract the key for each element.</param>
+        /// <param name="elementSelector">A function to map each source element to an element in an observable group.</param>
+        /// <param name="capacity">The initial number of elements that the underlying dictionary can contain.</param>
+        /// <param name="comparer">An equality comparer to compare keys with.</param>
+        /// <returns>A sequence of observable groups, each of which corresponds to a unique key value, containing all elements that share that same key value.</returns>
+        /// <exception cref="T:System.ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="keySelector" /> or <paramref name="elementSelector" /> or <paramref name="comparer" /> is null.</exception>
+        /// <exception cref="T:System.ArgumentOutOfRangeException">
+        /// <paramref name="capacity" /> is less than 0.</exception>
+        public static IQbservable<IGroupedObservable<TKey, TElement>> GroupBy<TSource, TKey, TElement>(this IQbservable<TSource> source, Expression<Func<TSource, TKey>> keySelector, Expression<Func<TSource, TElement>> elementSelector, int capacity, IEqualityComparer<TKey> comparer)
+        {
+            if (source == null)
+                throw new ArgumentNullException("source");
+            if (keySelector == null)
+                throw new ArgumentNullException("keySelector");
+            if (elementSelector == null)
+                throw new ArgumentNullException("elementSelector");
+            if (comparer == null)
+                throw new ArgumentNullException("comparer");
+            
+            return source.Provider.CreateQuery<IGroupedObservable<TKey, TElement>>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.GroupBy<TSource, TKey, TElement>(default(IQbservable<TSource>), default(Expression<Func<TSource, TKey>>), default(Expression<Func<TSource, TElement>>), default(int), default(IEqualityComparer<TKey>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource), typeof(TKey), typeof(TElement)),
+#endif
+                    source.Expression,
+                    keySelector,
+                    elementSelector,
+                    Expression.Constant(capacity, typeof(int)),
+                    Expression.Constant(comparer, typeof(IEqualityComparer<TKey>))
                 )
             );
         }
@@ -7488,6 +7646,100 @@ namespace System.Reactive.Linq
                     source.Expression,
                     keySelector,
                     durationSelector
+                )
+            );
+        }
+        
+        /// <summary>
+        /// Groups the elements of an observable sequence with the specified initial capacity according to a specified key selector function.
+        /// A duration selector function is used to control the lifetime of groups. When a group expires, it receives an OnCompleted notification. When a new element with the same
+        /// key value as a reclaimed group occurs, the group will be reborn with a new lifetime request.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <typeparam name="TKey">The type of the grouping key computed for each element in the source sequence.</typeparam>
+        /// <typeparam name="TDuration">The type of the elements in the duration sequences obtained for each group to denote its lifetime.</typeparam>
+        /// <param name="source">An observable sequence whose elements to group.</param>
+        /// <param name="keySelector">A function to extract the key for each element.</param>
+        /// <param name="durationSelector">A function to signal the expiration of a group.</param>
+        /// <param name="capacity">The initial number of elements that the underlying dictionary can contain.</param>
+        /// <returns>
+        /// A sequence of observable groups, each of which corresponds to a unique key value, containing all elements that share that same key value.
+        /// If a group's lifetime expires, a new group with the same key value can be created once an element with such a key value is encoutered.
+        /// </returns>
+        /// <exception cref="T:System.ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="keySelector" /> or <paramref name="durationSelector" /> is null.</exception>
+        /// <exception cref="T:System.ArgumentOutOfRangeException">
+        /// <paramref name="capacity" /> is less than 0.</exception>
+        public static IQbservable<IGroupedObservable<TKey, TSource>> GroupByUntil<TSource, TKey, TDuration>(this IQbservable<TSource> source, Expression<Func<TSource, TKey>> keySelector, Expression<Func<IGroupedObservable<TKey, TSource>, IObservable<TDuration>>> durationSelector, int capacity)
+        {
+            if (source == null)
+                throw new ArgumentNullException("source");
+            if (keySelector == null)
+                throw new ArgumentNullException("keySelector");
+            if (durationSelector == null)
+                throw new ArgumentNullException("durationSelector");
+            
+            return source.Provider.CreateQuery<IGroupedObservable<TKey, TSource>>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.GroupByUntil<TSource, TKey, TDuration>(default(IQbservable<TSource>), default(Expression<Func<TSource, TKey>>), default(Expression<Func<IGroupedObservable<TKey, TSource>, IObservable<TDuration>>>), default(int))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource), typeof(TKey), typeof(TDuration)),
+#endif
+                    source.Expression,
+                    keySelector,
+                    durationSelector,
+                    Expression.Constant(capacity, typeof(int))
+                )
+            );
+        }
+        
+        /// <summary>
+        /// Groups the elements of an observable sequence with the specified initial capacity according to a specified key selector function and comparer.
+        /// A duration selector function is used to control the lifetime of groups. When a group expires, it receives an OnCompleted notification. When a new element with the same
+        /// key value as a reclaimed group occurs, the group will be reborn with a new lifetime request.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <typeparam name="TKey">The type of the grouping key computed for each element in the source sequence.</typeparam>
+        /// <typeparam name="TDuration">The type of the elements in the duration sequences obtained for each group to denote its lifetime.</typeparam>
+        /// <param name="source">An observable sequence whose elements to group.</param>
+        /// <param name="keySelector">A function to extract the key for each element.</param>
+        /// <param name="durationSelector">A function to signal the expiration of a group.</param>
+        /// <param name="capacity">The initial number of elements that the underlying dictionary can contain.</param>
+        /// <param name="comparer">An equality comparer to compare keys with.</param>
+        /// <returns>
+        /// A sequence of observable groups, each of which corresponds to a unique key value, containing all elements that share that same key value.
+        /// If a group's lifetime expires, a new group with the same key value can be created once an element with such a key value is encoutered.
+        /// </returns>
+        /// <exception cref="T:System.ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="keySelector" /> or <paramref name="durationSelector" /> or <paramref name="comparer" /> is null.</exception>
+        /// <exception cref="T:System.ArgumentOutOfRangeException">
+        /// <paramref name="capacity" /> is less than 0.</exception>
+        public static IQbservable<IGroupedObservable<TKey, TSource>> GroupByUntil<TSource, TKey, TDuration>(this IQbservable<TSource> source, Expression<Func<TSource, TKey>> keySelector, Expression<Func<IGroupedObservable<TKey, TSource>, IObservable<TDuration>>> durationSelector, int capacity, IEqualityComparer<TKey> comparer)
+        {
+            if (source == null)
+                throw new ArgumentNullException("source");
+            if (keySelector == null)
+                throw new ArgumentNullException("keySelector");
+            if (durationSelector == null)
+                throw new ArgumentNullException("durationSelector");
+            if (comparer == null)
+                throw new ArgumentNullException("comparer");
+            
+            return source.Provider.CreateQuery<IGroupedObservable<TKey, TSource>>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.GroupByUntil<TSource, TKey, TDuration>(default(IQbservable<TSource>), default(Expression<Func<TSource, TKey>>), default(Expression<Func<IGroupedObservable<TKey, TSource>, IObservable<TDuration>>>), default(int), default(IEqualityComparer<TKey>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource), typeof(TKey), typeof(TDuration)),
+#endif
+                    source.Expression,
+                    keySelector,
+                    durationSelector,
+                    Expression.Constant(capacity, typeof(int)),
+                    Expression.Constant(comparer, typeof(IEqualityComparer<TKey>))
                 )
             );
         }
@@ -7579,6 +7831,110 @@ namespace System.Reactive.Linq
                     keySelector,
                     elementSelector,
                     durationSelector
+                )
+            );
+        }
+        
+        /// <summary>
+        /// Groups the elements of an observable sequence with the specified initial capacity according to a specified key selector function and selects the resulting elements by using a specified function.
+        /// A duration selector function is used to control the lifetime of groups. When a group expires, it receives an OnCompleted notification. When a new element with the same
+        /// key value as a reclaimed group occurs, the group will be reborn with a new lifetime request.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <typeparam name="TKey">The type of the grouping key computed for each element in the source sequence.</typeparam>
+        /// <typeparam name="TElement">The type of the elements within the groups computed for each element in the source sequence.</typeparam>
+        /// <typeparam name="TDuration">The type of the elements in the duration sequences obtained for each group to denote its lifetime.</typeparam>
+        /// <param name="source">An observable sequence whose elements to group.</param>
+        /// <param name="keySelector">A function to extract the key for each element.</param>
+        /// <param name="elementSelector">A function to map each source element to an element in an observable group.</param>
+        /// <param name="durationSelector">A function to signal the expiration of a group.</param>
+        /// <param name="capacity">The initial number of elements that the underlying dictionary can contain.</param>
+        /// <returns>
+        /// A sequence of observable groups, each of which corresponds to a unique key value, containing all elements that share that same key value.
+        /// If a group's lifetime expires, a new group with the same key value can be created once an element with such a key value is encoutered.
+        /// </returns>
+        /// <exception cref="T:System.ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="keySelector" /> or <paramref name="elementSelector" /> or <paramref name="durationSelector" /> is null.</exception>
+        /// <exception cref="T:System.ArgumentOutOfRangeException">
+        /// <paramref name="capacity" /> is less than 0.</exception>
+        public static IQbservable<IGroupedObservable<TKey, TElement>> GroupByUntil<TSource, TKey, TElement, TDuration>(this IQbservable<TSource> source, Expression<Func<TSource, TKey>> keySelector, Expression<Func<TSource, TElement>> elementSelector, Expression<Func<IGroupedObservable<TKey, TElement>, IObservable<TDuration>>> durationSelector, int capacity)
+        {
+            if (source == null)
+                throw new ArgumentNullException("source");
+            if (keySelector == null)
+                throw new ArgumentNullException("keySelector");
+            if (elementSelector == null)
+                throw new ArgumentNullException("elementSelector");
+            if (durationSelector == null)
+                throw new ArgumentNullException("durationSelector");
+            
+            return source.Provider.CreateQuery<IGroupedObservable<TKey, TElement>>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.GroupByUntil<TSource, TKey, TElement, TDuration>(default(IQbservable<TSource>), default(Expression<Func<TSource, TKey>>), default(Expression<Func<TSource, TElement>>), default(Expression<Func<IGroupedObservable<TKey, TElement>, IObservable<TDuration>>>), default(int))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource), typeof(TKey), typeof(TElement), typeof(TDuration)),
+#endif
+                    source.Expression,
+                    keySelector,
+                    elementSelector,
+                    durationSelector,
+                    Expression.Constant(capacity, typeof(int))
+                )
+            );
+        }
+        
+        /// <summary>
+        /// Groups the elements of an observable sequence with the specified initial capacity according to a specified key selector function and comparer and selects the resulting elements by using a specified function.
+        /// A duration selector function is used to control the lifetime of groups. When a group expires, it receives an OnCompleted notification. When a new element with the same
+        /// key value as a reclaimed group occurs, the group will be reborn with a new lifetime request.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <typeparam name="TKey">The type of the grouping key computed for each element in the source sequence.</typeparam>
+        /// <typeparam name="TElement">The type of the elements within the groups computed for each element in the source sequence.</typeparam>
+        /// <typeparam name="TDuration">The type of the elements in the duration sequences obtained for each group to denote its lifetime.</typeparam>
+        /// <param name="source">An observable sequence whose elements to group.</param>
+        /// <param name="keySelector">A function to extract the key for each element.</param>
+        /// <param name="elementSelector">A function to map each source element to an element in an observable group.</param>
+        /// <param name="durationSelector">A function to signal the expiration of a group.</param>
+        /// <param name="capacity">The initial number of elements that the underlying dictionary can contain.</param>
+        /// <param name="comparer">An equality comparer to compare keys with.</param>
+        /// <returns>
+        /// A sequence of observable groups, each of which corresponds to a unique key value, containing all elements that share that same key value.
+        /// If a group's lifetime expires, a new group with the same key value can be created once an element with such a key value is encountered.
+        /// </returns>
+        /// <exception cref="T:System.ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="keySelector" /> or <paramref name="elementSelector" /> or <paramref name="durationSelector" /> or <paramref name="comparer" /> is null.</exception>
+        /// <exception cref="T:System.ArgumentOutOfRangeException">
+        /// <paramref name="capacity" /> is less than 0.</exception>
+        public static IQbservable<IGroupedObservable<TKey, TElement>> GroupByUntil<TSource, TKey, TElement, TDuration>(this IQbservable<TSource> source, Expression<Func<TSource, TKey>> keySelector, Expression<Func<TSource, TElement>> elementSelector, Expression<Func<IGroupedObservable<TKey, TElement>, IObservable<TDuration>>> durationSelector, int capacity, IEqualityComparer<TKey> comparer)
+        {
+            if (source == null)
+                throw new ArgumentNullException("source");
+            if (keySelector == null)
+                throw new ArgumentNullException("keySelector");
+            if (elementSelector == null)
+                throw new ArgumentNullException("elementSelector");
+            if (durationSelector == null)
+                throw new ArgumentNullException("durationSelector");
+            if (comparer == null)
+                throw new ArgumentNullException("comparer");
+            
+            return source.Provider.CreateQuery<IGroupedObservable<TKey, TElement>>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.GroupByUntil<TSource, TKey, TElement, TDuration>(default(IQbservable<TSource>), default(Expression<Func<TSource, TKey>>), default(Expression<Func<TSource, TElement>>), default(Expression<Func<IGroupedObservable<TKey, TElement>, IObservable<TDuration>>>), default(int), default(IEqualityComparer<TKey>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource), typeof(TKey), typeof(TElement), typeof(TDuration)),
+#endif
+                    source.Expression,
+                    keySelector,
+                    elementSelector,
+                    durationSelector,
+                    Expression.Constant(capacity, typeof(int)),
+                    Expression.Constant(comparer, typeof(IEqualityComparer<TKey>))
                 )
             );
         }
